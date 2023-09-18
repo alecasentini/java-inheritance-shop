@@ -65,6 +65,12 @@ public class Prodotto {
 		return prezzoIva;
 	}
 	
+	public float calcolaPrezzoScontato(boolean tesseraFedelta) {
+        float scontoBase = tesseraFedelta ? 0.02f : 0.0f; 
+        return getPrezzoIva() * (1 - scontoBase);
+    }
+
+	
 	
 };
 

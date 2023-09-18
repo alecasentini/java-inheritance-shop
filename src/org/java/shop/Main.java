@@ -34,7 +34,16 @@ public class Main {
 				+ ", marca= " + getMarca() + ", prezzo= " + getPrezzoBase() 
 				+ "euro, iva= " + getIva() + "%, imei=" + imei + ", memoria= " + memoria + "Gb]";
 		}
+		
+		@Override
+	    public float calcolaPrezzoScontato(boolean tesseraFedelta) {
 
+			if (getMemoria() < 32) {
+		        return getPrezzoBase() * (1 - 0.05f); 
+		    } else {
+		        return super.calcolaPrezzoScontato(tesseraFedelta); 
+		    }
+	    }
 			
 	};
 		
@@ -73,6 +82,16 @@ public class Main {
 				+ "euro, iva= " + getIva() + ", dimensioni= " + dimensioni 
 				+ " pollici, smart= " + (smart ? "Sì" : "No") + "]";
 		}
+		
+		@Override
+	    public float calcolaPrezzoScontato(boolean tesseraFedelta) {
+
+	        if (!getSmart()) {
+	            return getPrezzoIva() * (1 - 0.10f); 
+	        } else {
+	            return super.calcolaPrezzoScontato(tesseraFedelta);
+	        }
+	    }
 
 			
 	};
@@ -111,6 +130,16 @@ public class Main {
 				+ "euro, iva= " + getIva() + ", colore= " + colore 
 				+ ", wireless= " + (wireless ? "Sì" : "No") + "]";
 		}
+		
+		 @Override
+		 public float calcolaPrezzoScontato(boolean tesseraFedelta) {
+
+		        if (!getWireless()) {
+		            return getPrezzoBase() * (1 - 0.07f); 
+		        } else {
+		            return super.calcolaPrezzoScontato(tesseraFedelta); 
+		        }
+		 }
 
 	};
 

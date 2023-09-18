@@ -9,6 +9,11 @@ public class Carrello {
         float totale = 0.0f;
 
         int numeroProdotti = 0; 
+        
+        System.out.print("Hai una tessera fedeltà? (sì/no): ");
+        String rispostaFedelta = scanner.nextLine();
+
+        boolean tesseraFedelta = rispostaFedelta.equalsIgnoreCase("sì");
 
         while (true) {
             System.out.println("Scegli un tipo di prodotto: 1. Smartphone  2. Televisori  3. Cuffie o 4. Fine");
@@ -62,8 +67,11 @@ public class Carrello {
                 }
 
                 if (prodotto != null) {
+                    
+                    float prezzoScontato = prodotto.calcolaPrezzoScontato(tesseraFedelta); 
+                    totale += prezzoScontato;
+                    
                     carrello[numeroProdotti++] = prodotto;
-                    totale += prodotto.getPrezzoIva();
                     System.out.println("Prodotto aggiunto al carrello.");
                 }
             } else {
