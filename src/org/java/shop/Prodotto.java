@@ -60,9 +60,9 @@ public class Prodotto {
 		return prezzo;
 	}
 	
-	public String getPrezzoIva() {
+	public float getPrezzoIva() {
 		float prezzoIva = prezzo + (prezzo * iva / 100);
-		return String.format("%.2f", prezzoIva);
+		return prezzoIva;
 	}
 	
 	
