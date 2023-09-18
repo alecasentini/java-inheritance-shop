@@ -11,16 +11,13 @@ public class Carrello {
         int numeroProdotti = 0; 
         
         System.out.print("Hai una tessera fedeltà? (sì/no): ");
-        String rispostaFedelta = scanner.nextLine();
-
-        boolean tesseraFedelta = rispostaFedelta.equalsIgnoreCase("sì");
+        boolean rispostaFedelta = (scanner.nextLine().toLowerCase()  == "si") ? true : false;
 
         while (true) {
             System.out.println("Scegli un tipo di prodotto: 1. Smartphone  2. Televisori  3. Cuffie o 4. Fine");
-            int scelta = scanner.nextInt();
-            scanner.nextLine(); 
+            String scelta = scanner.nextLine();
 
-            if (scelta == 4) {
+            if (scelta == "4") {
                 break; 
             }
 
@@ -36,42 +33,43 @@ public class Carrello {
                 System.out.println("Inserisci l'IVA:");
                 int iva = scanner.nextInt();
 
-                Prodotto prodotto = null;
 
                 switch (scelta) {
-                    case 1:
+                    case "1":
                     	scanner.nextLine();
                         System.out.println("Inserisci l'IMEI:");
                         String imei = scanner.nextLine();
                         System.out.println("Inserisci la memoria (in GB):");
                         int memoria = scanner.nextInt();
-                        prodotto = new Main.Smartphone(codice, nome, marca, prezzo, iva, imei, memoria);
+                        carrello[numeroProdotti] = new Smartphone(codice, nome, marca, prezzo, iva, imei, memoria);
+                        numeroProdotti++;
+                        System.out.println(carrello[numeroProdotti]);
                         break;
-                    case 2:
+                    case "2":
                     	scanner.nextLine();
                         System.out.println("Inserisci le dimensioni (in pollici):");
                         int dimensioni = scanner.nextInt();
                         System.out.println("Il televisore è smart? (true/false):");
                         boolean smart = scanner.nextBoolean();
-                        prodotto = new Main.Televisori(codice, nome, marca, prezzo, iva, dimensioni, smart);
+                        carrello [numeroProdotti] = new Televisori(codice, nome, marca, prezzo, iva, dimensioni, smart);
                         break;
-                    case 3:
+                    case "3":
                     	scanner.nextLine();
                         System.out.println("Inserisci il colore:");
                         String colore = scanner.nextLine();
                         System.out.println("Le cuffie sono wireless? (true/false):");
                         boolean wireless = scanner.nextBoolean();
-                        prodotto = new Main.Cuffie(codice, nome, marca, prezzo, iva, colore, wireless);
+                        carrello [numeroProdotti] = new Cuffie(codice, nome, marca, prezzo, iva, colore, wireless);
                         break;
                     
                 }
 
-                if (prodotto != null) {
+                if (carrello[numeroProdotti] != null) {
                     
-                    float prezzoScontato = prodotto.calcolaPrezzoScontato(tesseraFedelta); 
-                    totale += prezzoScontato;
+                float prezzoScontato = carrello[numeroProdotti].calcolaPrezzoScontato(rispostaFedelta); 
+                totale += prezzoScontato;
                     
-                    carrello[numeroProdotti++] = prodotto;
+                    
                     System.out.println("Prodotto aggiunto al carrello.");
                 }
             } else {
