@@ -39,7 +39,7 @@ public class Cuffie extends Prodotto{
 	 public float calcolaPrezzoScontato(boolean rispostaFedelta) {
 
 	        if (!getWireless()) {
-	            return getPrezzoBase() * (1 - 0.07f); 
+	            return getPrezzoIva() * (1 - 0.07f); 
 	        } else {
 	            return super.calcolaPrezzoScontato(rispostaFedelta); 
 	        }

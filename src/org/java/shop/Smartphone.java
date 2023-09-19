@@ -38,7 +38,7 @@ public class Smartphone extends Prodotto{
     public float calcolaPrezzoScontato(boolean rispostaFedelta) {
 
 		if (getMemoria() < 32) {
-	        return getPrezzoBase() * (1 - 0.05f); 
+	        return getPrezzoIva() * (1 - 0.05f); 
 	    } else {
 	        return super.calcolaPrezzoScontato(rispostaFedelta); 
 	    }
